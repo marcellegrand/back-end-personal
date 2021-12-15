@@ -65,6 +65,8 @@ while (opcion >= 1 and opcion <= 4):
                 if (valor == email):
                     posicion = indice
                     break
+            if (posicion >= 0):
+                break
             indice = indice + 1
         
         if (posicion >= 0):
@@ -96,6 +98,8 @@ while (opcion >= 1 and opcion <= 4):
                 if (valor == email):
                     posicion = indice
                     break
+            if (posicion >= 0):
+                break
             indice = indice + 1
         
         if (posicion >= 0):
