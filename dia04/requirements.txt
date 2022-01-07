@@ -1,2 +1,4 @@
+#Para integrar python con firebase
 pyrebase
+#Para implementar web con python
 Flask
