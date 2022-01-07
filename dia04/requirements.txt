@@ -1,4 +1,8 @@
 #Para integrar python con firebase
-pyrebase
+pyrebase4
 #Para implementar web con python
 Flask
+#Para poder emplear variables de entorno
+python-dotenv
+#Para poder integrar flask con bootstrap
+flask-bootstrap
