@@ -6,3 +6,7 @@ Flask
 python-dotenv
 #Para poder integrar flask con bootstrap
 flask-bootstrap
+#Permite trabajar con formularios en flask
+Flask-WTF
+#Permite trabajar con Firestore
+firebase-admin

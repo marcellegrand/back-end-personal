@@ -3,5 +3,6 @@ from flask import Blueprint
 
 admin = Blueprint('admin',__name__,url_prefix='/admin')
 
+#Importamos 'views' del mismo paquete actual: 'admin'
 from . import views
 

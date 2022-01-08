@@ -1,0 +1,15 @@
+#Microframework para aplicaciones Web
+Flask
+#ORM para manipular bases de datos relacionales
+#Un ORM es un modelo de programación que permite mapear las estructuras de una base de datos relacional (SQL Server, Oracle, MySQL, etc.), en #adelante RDBMS (Relational Database Management System), sobre una estructura lógica de entidades con el objeto de simplificar y acelerar el #desarrollo de nuestras aplicaciones.
+Flask-SQLAlchemy
+#Sirve para crear modelos ORM y serializarlos
+flask-marshmallow
+#Sirve para integrar Marshmallow con SQLAlchemy
+marshmallow-sqlalchemy
+#Librería para conectar MySQL con Python
+mysqlclient
+#Permitir acceso de otros servidores
+flask-cors
+#Definir variables de entorno en Python
+python-dotenv
