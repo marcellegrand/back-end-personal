@@ -37,6 +37,17 @@ firebase = pyrebase.initialize_app(config)
 auth = firebase.auth()
 ##########FIREBASE4##########
 
+############# FIRESTORE ##################################
+import firebase_admin
+from firebase_admin import credentials
+from firebase_admin import firestore
+
+cred = credentials.Certificate("firebasetoken.json")
+firebase_admin.initialize_app(cred)
+db = firestore.client()
+#########################################################
+
+
 @admin.route('/login',methods=['GET','POST'])
 def login():
     login_form = LoginForm()
@@ -63,7 +74,40 @@ def login():
 @admin.route('/proyectos')
 def proyectos():
     if ('token' in session):
-        return render_template('admin/proyectos.html')
+        colProyectos = db.collection('proyectos')
+        proyecto_form = ProyectoForm()
+        
+        if proyecto_form.validate_on_submit():
+            #CAPTURAMOS VALORES DE USUARIO Y PASSWORD
+            nombreData = proyecto_form.nombre.data
+            descripcionData = proyecto_form.descripcion.data
+            urlData = proyecto_form.url.data
+            
+            #CREAR DICCIONARIO
+            data = {
+                'nombre': nombreData,
+                'descripcion':descripcionData,
+                'url':urlData
+            }
+            
+            colProyectos.document().set(data)
+        
+        
+        docProyectos = colProyectos.get()        
+        lstProyectos = []
+        for doc in docProyectos:
+            dicProyecto = doc.to_dict()
+            lstProyectos.append(dicProyecto)
+    
+        print(lstProyectos)
+        
+
+        context = {
+            'proyectos':lstProyectos,
+            'proyecto_form':proyecto_form
+        }
+        
+        return render_template('admin/proyectos.html',**context)
     else:
         return redirect(url_for('admin.login'))
         
