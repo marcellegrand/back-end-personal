@@ -15,7 +15,7 @@
                                 {% for categoria in categorias%}
                            
                                 <li>
-                                    <a href="#"><span class="section-sb-label">{{ categoria.nombre }} <span class="count">{{ categoria.producto_set.all.count }}</span></span></a>
+                                    <a href="{% url 'tienda:productos_x_categoria' categoria.id%}"><span class="section-sb-label">{{ categoria.nombre }} <span class="count">{{ categoria.producto_set.all.count }}</span></span></a>
                                 </li>
                            
                                 {% endfor %}
@@ -33,7 +33,7 @@
             <article class="cf-sm-6 cf-md-6 cf-lg-6 col-xs-6 col-sm-6 col-md-6 col-lg-6 sectgl-item">
                 <div class="sectgl prod-i">
                     <div class="prod-i-top">
-                        <a class="prod-i-img" href="product.html">
+                        <a class="prod-i-img" href="{% url 'tienda:producto' producto.id %}">
                             <!--<img src="http://placehold.it/290x258" alt="">-->
                             <img src="{{ producto.imagen.url }}" alt="">
                         </a>
@@ -43,7 +43,7 @@
                                     <a href="wishlist.html" class="hover-label add_to_wishlist"><i class="icon ion-heart"></i><span>Add to Wishlist</span></a>
                                 </div>
                                 <p class="prod-quickview">
-                                    <a href="#" class="hover-label quick-view"><i class="icon ion-plus"></i><span>Quick View</span></a>
+                                    <a href="{% url 'tienda:producto' producto.id %}" class="hover-label quick-view"><i class="icon ion-plus"></i><span>Quick View</span></a>
                                 </p>
                                 <p class="prod-i-cart">
                                     <a href="#" class="hover-label prod-addbtn"><i class="icon ion-android-cart"></i><span>Add to Cart</span></a>
