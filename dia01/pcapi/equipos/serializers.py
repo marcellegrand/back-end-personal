@@ -25,7 +25,8 @@ class EquipoSerializer(serializers.ModelSerializer):
     #memoria = serializers.IntegerField()
     #disco = serializers.IntegerField()
     
-    def create(self,validated_data):
-        return Equipo.objects.create(**validated_data)
+    #No es necesario esto, salvo que quisiéramos reescribir la función 'create'
+    #def create(self,validated_data):
+    #    return Equipo.objects.create(**validated_data)
     
     
