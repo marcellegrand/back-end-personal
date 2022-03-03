@@ -1,0 +1,14 @@
+Poner lo que haya en la URL siguiente dentro del .gitignore
+    https://www.toptal.com/developers/gitignore/api/django
+
+Crear el proyecto de django:
+    django-admin startproject project .
+
+Crear la aplicación de django:
+    python manage.py startapp app
+
+Hacer las migraciones
+    python manage.py makemigrations
+
+Migrar a la base de datos
+    python manage.py migrate
