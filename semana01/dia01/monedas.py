@@ -30,6 +30,7 @@ reintentarmonto = True
 #APERTURA DEL ARCHIVO DE FACTORES DE CAMBIO
 if (os.path.isfile('factores.txt')):
     filFactores = open('factores.txt','r')
+    #<_io.TextIOWrapper name='factores.txt' mode='r' encoding='cp1252'>
     strFactores = filFactores.read()
     #penusd->3.780
     #peneur->4.570
@@ -38,16 +39,19 @@ if (os.path.isfile('factores.txt')):
     
     for eleFactor in arrFactores:
         comFactor = eleFactor.split('->')
-        #penusd
-        #3.780
-        #peneur
-        #4.570
+        #print(comFactor)
+        #['penusd', '3.780']
+        #['peneur', '4.570']
         dicFactor = {
             'key':comFactor[0],
             'value':comFactor[1]
         }
+        #print(dicFactor)
+        #{'key': 'penusd', 'value': '3.780'}
+        #{'key': 'peneur', 'value': '4.570'}
         dicFactores.append(dicFactor)
-    
+    #print(dicFactores)
+    #[{'key': 'penusd', 'value': '3.780'}, {'key': 'peneur', 'value': '4.570'}]
     filFactores.close()
 
 #SETEO DE FACTORES DE CAMBIO
