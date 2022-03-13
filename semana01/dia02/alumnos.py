@@ -44,9 +44,15 @@ while (opcion >= 1 and opcion <= 4):
         print("******LISTAR******")
         print("******************") 
         
+        registros = []
         if (len(alumnos) > 0):
             cabeceras = alumnos[0].keys()
-            registros = [x.values() for x in alumnos]  
+            registros = [alumno.values() for alumno in alumnos]  
+            '''
+            for alumno in alumnos:
+                registros.append(alumno.values())
+            '''
+                
             print(tabulate.tabulate(registros,cabeceras))
         else:
             print("***¡¡SIN REGISTRO!!***")
@@ -103,7 +109,10 @@ while (opcion >= 1 and opcion <= 4):
             indice = indice + 1
         
         if (posicion >= 0):
-            confirmacion = input("¿Seguro que desea ELIMINAR a " + objAlumno['email'] + " (S/N)?")
+            print('NOMBRE: ' + objAlumno['nombre'])
+            print('EMAIL: ' + objAlumno['email'])
+            print('CELULAR: ' + objAlumno['celular'])
+            confirmacion = input("¿Seguro que desea ELIMINAR (S/N)?")
             
             if (confirmacion == 'S'):
                 alumnos.pop(posicion)
