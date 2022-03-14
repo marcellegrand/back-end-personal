@@ -1,5 +1,5 @@
-#PROGRAMA CRUD DE ALUMNOS
 import tabulate
+import os
 
 def menu():
     print("[1] REGISTRAR")
@@ -21,7 +21,7 @@ def rotular(rotulo):
     print(frase)
     print(encierro)
 
-def buscar(email):
+def buscar(alumnos,email):
     indice = 0
     posicion = -1
     while (indice < len(alumnos)):
@@ -34,7 +34,7 @@ def buscar(email):
         indice = indice + 1
     return posicion
 
-def registrar():
+def registrar(alumnos):
     rotular("REGISTRAR")
     nombre = input("Ingrese NOMBRE:")
     email = input("Ingrese EMAIL:")
@@ -48,7 +48,7 @@ def registrar():
     print("***¡¡REGISTRADO!!***")
     pausar()
 
-def listar():
+def listar(alumnos):
     rotular("LISTAR")
 
     if (len(alumnos) > 0):
@@ -59,11 +59,11 @@ def listar():
         print("***¡¡SIN REGISTRO!!***")
     pausar()
 
-def actualizar():
+def actualizar(alumnos):
     rotular("ACTUALIZAR")
 
     email = input("Ingrese EMAIL del alumno a actualizar:")   
-    posicion = buscar(email)
+    posicion = buscar(alumnos,email)
     
     if (posicion >= 0):
         alumno = alumnos[posicion]
@@ -82,11 +82,11 @@ def actualizar():
         print("***¡¡NO ENCONTRADO: " + email + "!!***")
     pausar()
 
-def eliminar():
+def eliminar(alumnos):
     rotular("ELIMINAR")
     
     email = input("Ingrese EMAIL del alumno a eliminar:")   
-    posicion = buscar(email)
+    posicion = buscar(alumnos,email)
     
     if (posicion >= 0):
         alumno = alumnos[posicion]
@@ -102,32 +102,36 @@ def eliminar():
         print("***¡¡NO ENCONTRADO: " + email + "!!***")
     pausar()        
 
-'''       
-******************
-PROGRAMA PRINCIPAL
-****************** 
-'''
-opcion = 1
-pausa = 0
-alumnos = []
-while (opcion >= 1 and opcion <= 4):
-    print("****************************************")
-    print("******SISTEMA ACADEMICO DE ALUMNOS******")
-    print("****************************************")
-    menu()
+def leerArchivo(alumnos,archivo,separador):
+    if (os.path.isfile(archivo)):
+        objArchivo = open(archivo,'r')
+        strContenido = objArchivo.read()
+        arrRenglones = strContenido.splitlines()
+        for renglon in arrRenglones:
+            valores = renglon.split(separador)
+            dicRegistro = {
+                'nombre':valores[0],
+                'email':valores[1],
+                'celular':valores[2]
+            }
+            alumnos.append(dicRegistro)
+        objArchivo.close()
     
-    opcion = int(input("Ingrese una OPCIÓN: "))
-    if (opcion == 1):
-        registrar()
-    elif (opcion == 2):
-        listar()
-    elif (opcion == 3):
-        actualizar()
-    elif (opcion == 4):
-        eliminar()
-    elif (opcion == 5):
-        rotular("¡GRACIAS!")
-    else:
-        rotular("¡OPCIÓN INVÁLIDA!")
+def guardarArchivo(alumnos,archivo):
+    strContenido = ""
+    linea = 1
+    for alumno in alumnos:
+        item = 1
+        items = len(alumno.keys())
+        if linea > 1:
+            strContenido += '\n'
+        for valor in alumno.values():
+            strContenido += valor
+            if item < items:
+                strContenido += ';'
+            item += 1
+        linea += 1
     
-
+    objArchivo = open(archivo,'w')
+    objArchivo.write(strContenido)
+    objArchivo.close()   
