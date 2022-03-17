@@ -13,7 +13,7 @@ class Cliente(Empresa):
         super().__init__(ruc,razonsocial,telefono,email)   
         self.credito = credito
     def mostrar(self):
-        print(super().mostrar() + ';' + str(self.credito))
+        return super().mostrar() + ';' + str(self.credito)
         
 
 class Proveedor(Empresa):
@@ -21,14 +21,14 @@ class Proveedor(Empresa):
         super().__init__(ruc,razonsocial,telefono,email)   
         self.calificacion = calificacion
     def mostrar(self):
-        print(super().mostrar() + ';' + str(self.calificacion))
+        return super().mostrar() + ';' + str(self.calificacion)
     
 
 michell = Empresa(20100192650,'Michell',125456789,'michell@michell.com.pe')
 print(michell.mostrar())
 
 mfh = Proveedor(201002569874,'MFH',987654321,'mfh@mfh.com.pe',1000)
-mfh.mostrar()
+print(mfh.mostrar())
 
 incalpaca = Cliente(20100478569,'INCALPACA',741852963,'incalpaca@grupoinca.com',1000000)
-incalpaca.mostrar()
+print(incalpaca.mostrar())
