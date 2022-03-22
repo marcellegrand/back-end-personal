@@ -1,5 +1,6 @@
 #Primera aplicación web con Python y Flask
-from flask import Flask, request
+from flask import Flask
+from flask import request
 
 app = Flask(__name__)
 
