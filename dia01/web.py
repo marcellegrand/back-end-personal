@@ -57,7 +57,7 @@ def aritmetic():
     default_sum = ""
     default_sub = ""
     default_mul = ""
-    default_div= ""
+    default_div = ""
 
     if request.method == 'POST':
         number_1 = int(request.form['number_1'])
