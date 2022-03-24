@@ -3,16 +3,24 @@ from flask import render_template
 from flask import request
 import requests
 
-URL = 'https://api.github.com/users/marcellegrand'
-data = requests.get(URL)
-context = data.json()
-
-print(context)
-
 app = Flask(__name__)
 
-lstAutos = ['Audi','BMW','Lexus','Jaguar']
+'''
+Vamos importando este diccionario de datos desde la URL de github.
+Con esos datos reales alimentaremos los 'templates' de html.
+La variable 'context' es un diccionario 
+'''
+URL = 'https://api.github.com/users/marcellegrand'
+data = requests.get(URL)
+print(data)
+context = data.json()
+print(context)
 
+'''
+Creamos esta ruta llamada '/index' para probar el envío de parámetros de contexto a la renderización
+de una página 'html'. Este variable de tipo json normalmente suele llamarse 'context', pero en nuestro 
+ejemplo estamos usando la variable 'parameters'. Obviamente, esta variable es un diccionario.
+'''
 @app.route('/index')
 #def index():
 #   return 'HOLA MUNDO FLASK'
@@ -20,14 +28,23 @@ lstAutos = ['Audi','BMW','Lexus','Jaguar']
 #def index():
 #   nombre = request.args.get('nombre','no hay nombre')
 #   return render_template('index.html',nombre=nombre)
-
 def index():
+    #http://127.0.0.1:5000/index?nombre=Marcel&sexo=M
     nombre = request.args.get('nombre','no name')
-    context = {
+    sexo = request.args.get('sexo','F')
+    if sexo == 'F':
+        saludo = 'A'
+    else:
+        saludo = 'O'
+    lstAutos = ['Audi','BMW','Lexus','Jaguar']
+    lstConsolas = ('Nintendo Switch','Microsoft XBox One S','Sony PlayStation 4')
+    parameters = {
         'nombre':nombre,
-        'autos':lstAutos
+        'saludo':saludo,
+        'autos':lstAutos,
+        'consolas':lstConsolas
     }
-    return render_template('index.html',**context)
+    return render_template('index.html',**parameters)
 
 @app.route('/')
 def home():

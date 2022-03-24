@@ -8,11 +8,18 @@
 </head>
 <body>
     <center><h1>MI PRIMERA APLICACIÓN CON TEMPLATES Y FLASK</h1></center>
-    <p>BIENVENIDO {{ nombre }}</p>
-    <ul>
-        {% for p in productos %}
-            <li>{{ p }}</li>
+    <h2><p>BIENVENID{{saludo}}, {{nombre}}</p></h2>
+    <!--square, disc, circle-->
+    <ul type = "disc"> 
+        {% for auto in autos %}
+            <li>{{auto}}</li>
         {% endfor %}
     </ul>
+    <ol type = "A" reversed> 
+        {% for consola in consolas %}
+            <li>{{consola}}</li>
+        {% endfor %}
+    </ol>
+
 </body>
 </html>
